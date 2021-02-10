@@ -1,7 +1,11 @@
-const fs = require( "fs" );
-const generatePage = require( "./src/page-template.js" );
-let profileDataArgs = process.argv.slice( 2 );
-const [ name, github ] = profileDataArgs;
+const inquirer = require( "inquirer" );
+
+//const fs = require( "fs" );
+//const generatePage = require( "./src/page-template.js" );
+//const pageHTML = generatePage( name, github );
+
+//let profileDataArgs = process.argv.slice( 2 );
+//const [ name, github ] = profileDataArgs;
 
 /*
 const printProfileData = profileDataArr => {
@@ -26,6 +30,7 @@ const printProfileData = profileDataArr => {
 printProfileData( profileDataArgs );
 */
 
+
 //const generatePage = () => "Name: Shellie, Github: shellienguyen";
 //console.log( generatePage() );
 //const generatePage = ( userName, githubName ) => `Name: ${userName}, Github: ${githubName}`;
@@ -43,8 +48,19 @@ console.log( name, github );
 console.log( generatePage( name, github ));
  */
 
- fs.writeFile( "index.html", generatePage( name, github ), err => {
-   if ( err ) throw new Error( err );
+ inquirer
+   .prompt([
+      {
+         type: "input",
+         name: "name",
+         message: "What is your name?"
+      }
+   ])
+   .then( answers => console.log( answers ));
+
+/* 
+ fs.writeFile( ".index.html", pageHTML, err => {
+   if ( err ) throw err;
 
    console.log( "Portfolio complete! Check out index.html to see the output!" );
- });
+ }); */
